@@ -2,6 +2,7 @@
 ![David](https://img.shields.io/david/villekaa/vue-scroll-meter)
 ![GitHub file size in bytes](https://img.shields.io/github/size/villekaa/vue-scroll-meter/src/vue-scroll-meter.js)
 ![npm](https://img.shields.io/npm/dm/vue-scroll-meter)
+[![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 ##### Simple scroll meter plugin for vue.
 
 ## Demo
