@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-app-bar flat app dark color="blue-grey darken-4"></v-app-bar>
+        <v-content>
+          <v-container fluid class="text-center">
+            <v-row
+              justify="center"
+              class="blue-grey--text text--lighten-2 pa-5 mt-12"
+            >
+              <v-col cols="12" xs="12" sm="8" md="4">
+                <h1 class="mb-2">vue-scroll-meter</h1>
+                <h3 class="mb-5">Simple vue scroll meter plugin</h3>
+                <h3 class="mb-5">Installation</h3>
+                <v-card
+                  flat
+                  color="blue-grey darken-4"
+                  dark
+                  class="pa-5 mb-5 blue-grey--text text--lighten-2"
+                >
+                  <ul class="text-left mb-5 white--text">
+                    <li>npm install vue-scroll-meter</li>
+                    <li>yarn add vue-scroll-meter</li>
+                  </ul>
+                  <v-divider class="ma-5"></v-divider>
+                  <ul class="text-left white--text">
+                    <li>import Vue from 'vue'</li>
+                    <li>import VueScrollMeter from 'vue-scroll-meter'</li>
+                    <li>Vue.use(VueScrollMeter, { /* Optional */ })</li>
+                  </ul>
+                </v-card>
+
+                <v-card
+                  flat
+                  color="blue-grey darken-4"
+                  dark
+                  class="pa-5 mb-5 blue-grey--text text--lighten-2"
+                >
+                  <v-card-title>Try it out</v-card-title>
+                  <v-slider
+                    step="0.1"
+                    max="5"
+                    min="0"
+                    v-model="delay"
+                    @change="update"
+                    :label="`Delay ${ delay }s`"
+                  ></v-slider>
+                  <v-slider
+                    step="0.1"
+                    max="1"
+                    min="0.1"
+                    v-model="opacity"
+                    @change="update"
+                    :label="`Opacity ${ opacity }`"
+                  ></v-slider>
+                  <v-slider
+                    step="1"
+                    max="20"
+                    min="2"
+                    v-model="height"
+                    @change="update"
+                    :label="`Height ${ height }px`"
+                  ></v-slider>
+                </v-card>
+
+                <v-simple-table dark color="blue-grey darken-4">
+                  <template v-slot:default>
+                    <thead>
+                      <tr>
+                        <th class="text-center">Parameters</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">Example</th>
+                        <th class="text-center">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in options" :key="item.name">
+                        <td>{{ item.parameter }}</td>
+                        <td>{{ item.type }}</td>
+                        <td>{{ item.example }}</td>
+                        <td>{{ item.description }}</td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+                <v-chip
+                  class="ma-5 button"
+                  text-color="black"
+                  href="https://github.com/villekaa/vue-scroll-meter"
+                >
+                  <v-avatar left>
+                    <v-icon>fab fa-github</v-icon>
+                  </v-avatar>
+                  GitHub
+                </v-chip>
+                <p>Scroll down to see it in action !</p>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-content>
+      </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.0.0/marked.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data: {
+          delay: 0.7,
+          opacity: 1,
+          height: 4,
+          options: [
+            {
+              parameter: "color",
+              type: "String",
+              example: "red",
+              description: "hex, rgb",
+            },
+            {
+              parameter: "opacity",
+              type: "Number",
+              example: ".4",
+              description: "0 - 1",
+            },
+            {
+              parameter: "height",
+              type: "Number",
+              example: "10",
+              description: "pixels",
+            },
+            {
+              parameter: "delay",
+              type: "Number",
+              example: "1",
+              description: "seconds",
+            },
+          ],
+        },
+        methods: {
+          update() {
+            const el = document.querySelector(".ScrollMeter");
+            el.style.WebkitTransition = `all ${this.delay}s`;
+            el.style.MozTransition = `all ${this.delay}s`;
+            el.style.opacity = this.opacity;
+            el.style.height = `${this.height}px`;
+          },
+        },
+        mounted() {
+          const div = document.createElement("div");
+          // Added class for customization
+          div.setAttribute("class", "ScrollMeter");
+          // CSS
+          div.style.zIndex = "99999999";
+          div.style.position = "fixed";
+          div.style.top = "0";
+          div.style.left = "0";
+
+          div.style.WebkitTransition = "all .7s";
+          div.style.MozTransition = "all .7s";
+          div.style.opacity = "1";
+          div.style.height = "4px";
+          div.style.background =
+            "linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%)";
+
+          document.body.appendChild(div);
+
+          window.addEventListener("scroll", () => {
+            const current =
+              ((document.documentElement.scrollTop + document.body.scrollTop) /
+                (document.documentElement.scrollHeight -
+                  document.documentElement.clientHeight)) *
+              100;
+            div.style.width = Math.ceil(current) + "%";
+          });
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+  #app {
+    height: 2500px;
+    background: #37474f;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .button {
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%) !important;
+    border-color: #3ad59f;
+  }
+  .theme--dark.v-data-table {
+    background-color: #263238;
+    color: #fff;
+  }
+  ul {
+    list-style-type: none;
+  }
+</style>

@@ -1,0 +1,42 @@
+{
+  "name": "vue-scroll-meter",
+  "version": "1.0.2",
+  "description": "Simple vue scroll meter",
+  "author": "Ville Kaasalainen",
+  "license": "MIT",
+  "keywords": [
+    "meter",
+    "scroll",
+    "progress",
+    "display",
+    "vue scroll meter"
+  ],
+  "main": "src/vue-scroll-meter.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.2.0",
+    "file-loader": "^6.0.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.9.0",
+    "lodash": "^4.17.15"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
